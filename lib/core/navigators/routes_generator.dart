@@ -5,6 +5,10 @@ import '../../../features/auth/presentation/view/welcome_view.dart';
 import '../../features/auth/presentation/view/signin_view.dart';
 import '../../features/auth/presentation/view/signup_view.dart';
 import '../../features/auth/presentation/view/splash_view.dart';
+import '../../features/task/presentation/view/taskcreate_page.dart';
+import '../../features/task/presentation/view/taskdetail_page.dart';
+import '../../features/task/presentation/view/taskedit_page.dart';
+import '../../features/task/presentation/view/tasklist_page.dart';
 import 'routes_manager.dart';
 import 'undefined_route.dart';
 
@@ -29,38 +33,38 @@ class RoutesGenerator {
           duration: const Duration(milliseconds: 300),
           child: const SignUpView(),
         );
-      //Task Routes -------------------------------------------------------------------------------------------------------------
-      // case RoutesManager.tasklistRoute:
-      //   return PageTransition(
-      //     type: PageTransitionType.rightToLeft,
-      //     duration: const Duration(milliseconds: 300),
-      //     child: const TaskListView(),
-      //   );
-      // case RoutesManager.taskDetailRoute:
-      //   Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
+      // Task Routes -------------------------------------------------------------------------------------------------------------
+      case RoutesManager.tasklistRoute:
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          duration: const Duration(milliseconds: 300),
+          child: const TaskListView(),
+        );
+      case RoutesManager.taskDetailRoute:
+        Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
 
-      //   return PageTransition(
-      //     type: PageTransitionType.rightToLeft,
-      //     duration: const Duration(milliseconds: 300),
-      //     child: TaskDetailView(
-      //       args: args,
-      //     ),
-      //   );
-      // case RoutesManager.taskEditRoute:
-      //   Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
-      //   return PageTransition(
-      //     type: PageTransitionType.rightToLeft,
-      //     duration: const Duration(milliseconds: 300),
-      //     child: TaskEditView(
-      //       args: args,
-      //     ),
-      //   );
-      // case RoutesManager.taskCreateRoute:
-      //   return PageTransition(
-      //     type: PageTransitionType.rightToLeft,
-      //     duration: const Duration(milliseconds: 300),
-      //     child: const TaskCreateView(),
-      //   );
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          duration: const Duration(milliseconds: 300),
+          child: TaskDetailView(
+            args: args,
+          ),
+        );
+      case RoutesManager.taskEditRoute:
+        Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          duration: const Duration(milliseconds: 300),
+          child: TaskEditView(
+            args: args,
+          ),
+        );
+      case RoutesManager.taskCreateRoute:
+        return PageTransition(
+          type: PageTransitionType.rightToLeft,
+          duration: const Duration(milliseconds: 300),
+          child: const TaskCreateView(),
+        );
 
       //Default Route -------------------------------------------------------------------------------------------------------------
       default:

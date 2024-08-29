@@ -70,10 +70,10 @@ class SignupViewState extends State<SignUpView> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is AuthError) {
+        if (state is SignUpError) {
           logger.e(state.message);
           UiHelpers.showToast('error', state.message);
-        } else if (state is AuthAuthenticated) {
+        } else if (state is SignUpSuccess) {
           UiHelpers.navigateToPage(RoutesManager.signInRoute);
         }
       },
@@ -236,7 +236,7 @@ class SignupViewState extends State<SignUpView> {
             backgroundColor:
                 _formCompleted ? AppColor.primary : AppColor.neutral300,
             onPressed: _formCompleted ? () => onContinue() : null,
-            isLoading: context.watch<AuthBloc>().state is AuthLoading,
+            isLoading: context.watch<AuthBloc>().state is SignUpLoading,
           ),
         );
       },

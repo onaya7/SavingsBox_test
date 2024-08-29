@@ -31,34 +31,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   FutureOr<void> signInEvent(SignInEvent event, Emitter<AuthState> emit) async {
-    emit(AuthLoading());
-
+    emit(SignInLoading());
     final failureOrUser = await signInWithEmailAndPassword(
         SigninParams(email: event.email, password: event.password));
     failureOrUser.fold(
-      (failure) => emit(AuthError(message: failure.displayMessage)),
-      (user) => emit(AuthAuthenticated(user: user)),
+      (failure) => emit(SignInError(message: failure.displayMessage)),
+      (user) => emit(SignInSuccess(user: user)),
     );
   }
 
   FutureOr<void> signOutEvent(
       SignOutEvent event, Emitter<AuthState> emit) async {
-    emit(AuthLoading());
-
+    emit(SignOutLoading());
     final failureOrVoid = await signOut(NoParams());
     failureOrVoid.fold(
-      (failure) => emit(AuthError(message: failure.displayMessage)),
-      (_) => emit(const AuthUnauthenticated(message: 'User signed out')),
+      (failure) => emit(SignOutError(message: failure.displayMessage)),
+      (_) => emit(const SignOutSuccess(message: 'User signed out')),
     );
   }
 
   FutureOr<void> signUpEvent(SignUpEvent event, Emitter<AuthState> emit) async {
-    emit(AuthLoading());
+    emit(SignUpLoading());
     final failureOrUser = await signUpWithEmailAndPassword(
         Params(email: event.email, password: event.password));
     failureOrUser.fold(
-      (failure) => emit(AuthError(message: failure.displayMessage)),
-      (user) => emit(AuthAuthenticated(user: user)),
+      (failure) => emit(SignUpError(message: failure.displayMessage)),
+      (user) => emit(SignUpSuccess(user: user)),
     );
   }
 

@@ -3,7 +3,7 @@ import 'package:savingsbox_test/core/constants/app_color.dart';
 import 'package:savingsbox_test/core/constants/keys.dart';
 import 'package:toastification/toastification.dart';
 
-import 'logger.dart';
+import '../utils/logger.dart';
 
 class UiHelpers {
   UiHelpers._();

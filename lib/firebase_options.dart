@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:savingsbox_test/core/constants/env.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -49,16 +50,16 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDGvv_omVZ2yA7xb1t1kkySMychdOru1es',
+  static FirebaseOptions android = FirebaseOptions(
+    apiKey: Env.androidApiKey ?? '',
     appId: '1:794607741322:android:58749be5c7368569020073',
     messagingSenderId: '794607741322',
     projectId: 'savingsbox-test',
     storageBucket: 'savingsbox-test.appspot.com',
   );
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDVf9DIprnwuISzPMQxN3zyi3EJIQGNmAY',
+  static FirebaseOptions ios = FirebaseOptions(
+    apiKey: Env.iosApiKey ?? '',
     appId: '1:794607741322:ios:57d7c37926f19f63020073',
     messagingSenderId: '794607741322',
     projectId: 'savingsbox-test',

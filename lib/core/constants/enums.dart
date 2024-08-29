@@ -1,0 +1,3 @@
+class Enums{
+  Enums._();
+}

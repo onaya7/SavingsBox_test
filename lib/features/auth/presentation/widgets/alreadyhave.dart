@@ -13,7 +13,7 @@ class AlreadyHave extends StatelessWidget {
     super.key,
   });
 
-  @override
+  @override 
   Widget build(BuildContext context) {
     return SizedBox(
       width: AppSizes.screenWidth(context),

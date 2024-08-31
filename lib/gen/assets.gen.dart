@@ -104,8 +104,12 @@ class $AssetsJsonGen {
   LottieGenImage get bookreveal =>
       const LottieGenImage('assets/json/bookreveal.json');
 
+  /// File path: assets/json/emailsent.json
+  LottieGenImage get emailsent =>
+      const LottieGenImage('assets/json/emailsent.json');
+
   /// List of all assets
-  List<LottieGenImage> get values => [bookreveal];
+  List<LottieGenImage> get values => [bookreveal, emailsent];
 }
 
 class Assets {

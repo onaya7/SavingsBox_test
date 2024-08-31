@@ -1,87 +1,113 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:savingsbox_test/features/task/presentation/bloc/task_bloc.dart';
 
-import '../../../../core/componenets/custom_refreshindicator.dart';
 import '../../../../core/componenets/custom_scaffold.dart';
 import '../../../../core/constants/app_color.dart';
 import '../../../../core/helpers/ui_helpers.dart';
 import '../../../../core/navigators/routes_manager.dart';
-import '../widgets/TaskTile.dart';
-import '../widgets/taskdeleteconfirmation.dart';
+import '../bloc/task_state.dart';
+import '../widgets/completedtasklist.dart';
+import '../widgets/hometasklist.dart';
 
-class TaskListView extends StatelessWidget {
+class TaskListView extends StatefulWidget {
   const TaskListView({super.key});
 
   @override
+  TaskListViewState createState() => TaskListViewState();
+}
+
+class TaskListViewState extends State<TaskListView> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      useFloatingActionButton: true,
-      onFloatingActionButtonPressed: () {
-        UiHelpers.navigateToPage(RoutesManager.taskCreateRoute);
+    return BlocConsumer<TaskBloc, TaskState>(
+      listener: (context, state) {
+        // TODO: implement listener
       },
-      appBar: AppBar(
-        title: const Text(
-          'Task List',
-          style: TextStyle(
-            color: AppColor.white,
-            fontSize: 20,
-          ),
-        ),
-        centerTitle: true,
-        foregroundColor: AppColor.white,
-        backgroundColor: AppColor.primary,
-        automaticallyImplyLeading: false,
-      ),
-      body: CustomRefreshIndicator(
-        onRefresh: () async {
-          await Future.delayed(const Duration(seconds: 2));
-        },
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                ListView.separated(
-                  itemCount: 10,
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) => const Gap(10),
-                  itemBuilder: (context, index) {
-                    return TaskTile(
-                      title: 'Title',
-                      body: 'Body',
-                      onTaskTileTap: () => UiHelpers.navigateToPage(
-                        RoutesManager.taskDetailRoute,
-                        arguments: {
-                          'title':
-                              'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-                          'body':
-                              'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-                          'userId': '3',
-                          'id': '1',
-                        },
+      builder: (context, state) {
+        return DefaultTabController(
+          length: 4,
+          child: CustomScaffold(
+            useFloatingActionButton: true,
+            onFloatingActionButtonPressed: () {
+              UiHelpers.navigateToPage(RoutesManager.taskCreateRoute);
+            },
+            appBar: _selectedIndex == 0
+                ? AppBar(
+                    title: const Text(
+                      'To-do List',
+                      style: TextStyle(
+                        color: AppColor.white,
+                        fontSize: 20,
                       ),
-                      onEditTap: () => UiHelpers.navigateToPage(
-                        RoutesManager.taskEditRoute,
-                        arguments: {
-                          'title':
-                              'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-                          'body':
-                              'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-                          'userId': '3',
-                          'id': '1',
-                        },
+                    ),
+                    centerTitle: true,
+                    foregroundColor: AppColor.white,
+                    backgroundColor: AppColor.primary,
+                    automaticallyImplyLeading: false,
+                    bottom: const TabBar(
+                      labelColor: AppColor.white,
+                      indicatorColor: AppColor.divider,
+                      unselectedLabelColor: AppColor.grey400,
+                      tabs: [
+                        Tab(text: 'All Tasks'),
+                        Tab(text: 'Work'),
+                        Tab(text: 'Personal'),
+                        Tab(text: 'Others'),
+                      ],
+                    ),
+                    elevation: 0,
+                  )
+                : AppBar(
+                    title: const Text(
+                      'Completed List',
+                      style: TextStyle(
+                        color: AppColor.white,
+                        fontSize: 20,
                       ),
-                      onDeleteTap: () =>
-                          TaskDeleteConfirmation.show(context, id: 1),
-                    );
-                  },
-                )
+                    ),
+                    foregroundColor: AppColor.white,
+                    backgroundColor: AppColor.primary,
+                    automaticallyImplyLeading: false,
+                  ),
+            body: _selectedIndex == 0
+                ? const TabBarView(
+                    children: [
+                      HomeTaskList(),
+                      HomeTaskList(),
+                      HomeTaskList(),
+                      HomeTaskList(),
+                    ],
+                  )
+                : const CompletedTaskList(),
+            bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: AppColor.white,
+              elevation: 10.0,
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.apps_rounded),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.check_circle),
+                  label: 'Completed',
+                ),
               ],
+              currentIndex: _selectedIndex,
+              selectedItemColor: AppColor.primary,
+              onTap: _onItemTapped,
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

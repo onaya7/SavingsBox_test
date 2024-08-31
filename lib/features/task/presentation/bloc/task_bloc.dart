@@ -1,13 +1,9 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-
-part 'task_event.dart';
-part 'task_state.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:savingsbox_test/features/task/presentation/bloc/task_event.dart';
+import 'package:savingsbox_test/features/task/presentation/bloc/task_state.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
   TaskBloc() : super(TaskInitial()) {
-    on<TaskEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<TaskEvent>((event, emit) {});
   }
 }

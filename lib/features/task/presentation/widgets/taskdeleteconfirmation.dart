@@ -54,7 +54,7 @@ class BottomSheet extends StatelessWidget {
           Assets.icons.warning.svg(),
           const Gap(40),
           const Text(
-            'Delete Post',
+            'Delete Task',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w700,

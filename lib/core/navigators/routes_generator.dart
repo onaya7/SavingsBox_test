@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:savingsbox_test/features/auth/presentation/view/resendemail_view.dart';
 
 import '../../../features/auth/presentation/view/welcome_view.dart';
+import '../../features/auth/presentation/view/forgotpassword_view.dart';
 import '../../features/auth/presentation/view/signin_view.dart';
 import '../../features/auth/presentation/view/signup_view.dart';
 import '../../features/auth/presentation/view/splash_view.dart';
@@ -23,20 +25,33 @@ class RoutesGenerator {
         return MaterialPageRoute(builder: (context) => const WelcomeView());
       case RoutesManager.signInRoute:
         return PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.rightToLeftWithFade,
           duration: const Duration(milliseconds: 300),
           child: const SignInView(),
         );
       case RoutesManager.signUpRoute:
         return PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.rightToLeftWithFade,
           duration: const Duration(milliseconds: 300),
           child: const SignUpView(),
         );
+      case RoutesManager.forgotPasswordRoute:
+        return PageTransition(
+          type: PageTransitionType.rightToLeftWithFade,
+          duration: const Duration(milliseconds: 300),
+          child: const ForgotPasswordView(),
+        );
+      case RoutesManager.resendEmailRoute:
+        return PageTransition(
+          type: PageTransitionType.rightToLeftWithFade,
+          duration: const Duration(milliseconds: 300),
+          child: const ResendEmailView(),
+        );
+
       // Task Routes -------------------------------------------------------------------------------------------------------------
       case RoutesManager.tasklistRoute:
         return PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.rightToLeftWithFade,
           duration: const Duration(milliseconds: 300),
           child: const TaskListView(),
         );
@@ -44,7 +59,7 @@ class RoutesGenerator {
         Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
 
         return PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.rightToLeftWithFade,
           duration: const Duration(milliseconds: 300),
           child: TaskDetailView(
             args: args,
@@ -53,7 +68,7 @@ class RoutesGenerator {
       case RoutesManager.taskEditRoute:
         Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
         return PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.rightToLeftWithFade,
           duration: const Duration(milliseconds: 300),
           child: TaskEditView(
             args: args,
@@ -61,7 +76,7 @@ class RoutesGenerator {
         );
       case RoutesManager.taskCreateRoute:
         return PageTransition(
-          type: PageTransitionType.rightToLeft,
+          type: PageTransitionType.rightToLeftWithFade,
           duration: const Duration(milliseconds: 300),
           child: const TaskCreateView(),
         );

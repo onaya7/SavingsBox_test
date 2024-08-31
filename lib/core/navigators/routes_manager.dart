@@ -6,6 +6,9 @@ class RoutesManager {
   static const String welcomeRoute = '/welcomeView';
   static const String signInRoute = '/signInView';
   static const String signUpRoute = '/signUpView';
+  static const String forgotPasswordRoute = '/forgotPasswordView';
+  static const String resendEmailRoute = '/resendEmailView';
+  
 
 
   //Task Routes -------------------------------------------------------------------------------------------------------------

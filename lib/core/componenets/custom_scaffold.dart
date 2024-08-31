@@ -49,6 +49,7 @@ class CustomScaffold extends StatelessWidget {
         appBar: appBar,
         body: body,
         bottomNavigationBar: bottomNavigationBar,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: useFloatingActionButton
             ? SizedBox(
                 height: 60,

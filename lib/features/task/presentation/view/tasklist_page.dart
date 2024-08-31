@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:savingsbox_test/core/componenets/custom_loading.dart';
 import 'package:savingsbox_test/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:savingsbox_test/features/auth/presentation/bloc/auth_event.dart';
 import 'package:savingsbox_test/features/auth/presentation/bloc/auth_state.dart';
 
 import '../../../../core/componenets/custom_scaffold.dart';
+import '../../../../core/componenets/custom_switch.dart';
 import '../../../../core/constants/app_color.dart';
 import '../../../../core/helpers/ui_helpers.dart';
 import '../../../../core/navigators/routes_manager.dart';
+import '../../../../core/utils/logger.dart';
 import '../widgets/completedtasklist.dart';
 import '../widgets/hometasklist.dart';
 
@@ -67,6 +70,13 @@ class TaskListViewState extends State<TaskListView> {
                     ),
                   ),
                   actions: [
+                    CustomSwitch(
+                      initialValue: false,
+                      onChanged: (value) {
+                        logger.i('toggle: $value');
+                      },
+                    ),
+                    const Gap(20),
                     IconButton(
                       icon: const Icon(Icons.logout),
                       onPressed: () {
@@ -114,6 +124,7 @@ class TaskListViewState extends State<TaskListView> {
                 )
               : const CompletedTaskList(),
           bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             backgroundColor: AppColor.white,
             elevation: 10.0,
             items: const <BottomNavigationBarItem>[

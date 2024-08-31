@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "794607741322",
-    "project_id": "savingsbox-test",
-    "storage_bucket": "savingsbox-test.appspot.com"
+    "project_number": "990566489032",
+    "project_id": "savingbox-test",
+    "storage_bucket": "savingbox-test.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:794607741322:android:58749be5c7368569020073",
+        "mobilesdk_app_id": "1:990566489032:android:ca7114a737df402674befd",
         "android_client_info": {
-          "package_name": "com.example.savingsbox"
+          "package_name": "com.example.savingsbox_test"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDGvv_omVZ2yA7xb1t1kkySMychdOru1es"
+          "current_key": "AIzaSyA_Ztc_sk7adhlxLDAkWZ4sq6CusztWE6Y"
         }
       ],
       "services": {

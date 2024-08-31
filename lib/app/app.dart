@@ -20,14 +20,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        // BlocProvider<AuthBloc>(
-        //   create: (context) => AuthBloc(
-        //     signInWithEmailAndPassword: sl<SignInWithEmailAndPassword>(),
-        //     signOut: sl<SignOut>(),
-        //     signUpWithEmailAndPassword: sl<SignUpWithEmailAndPassword>(),
-        //     getCurrentUser: sl<GetCurrentUser>(),
-        //   ),
-        // ),
         BlocProvider<AuthBloc>(create: (context) => sl<AuthBloc>()),
         BlocProvider<TaskBloc>(create: (context) => sl<TaskBloc>()),
       ],

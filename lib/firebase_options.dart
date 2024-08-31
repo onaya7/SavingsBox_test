@@ -3,7 +3,6 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
-import 'package:savingsbox_test/core/constants/env.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -50,20 +49,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static FirebaseOptions android = FirebaseOptions(
-    apiKey: Env.androidApiKey ?? '',
-    appId: '1:794607741322:android:58749be5c7368569020073',
-    messagingSenderId: '794607741322',
-    projectId: 'savingsbox-test',
-    storageBucket: 'savingsbox-test.appspot.com',
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyA_Ztc_sk7adhlxLDAkWZ4sq6CusztWE6Y',
+    appId: '1:990566489032:android:ca7114a737df402674befd',
+    messagingSenderId: '990566489032',
+    projectId: 'savingbox-test',
+    storageBucket: 'savingbox-test.appspot.com',
   );
 
-  static FirebaseOptions ios = FirebaseOptions(
-    apiKey: Env.iosApiKey ?? '',
-    appId: '1:794607741322:ios:57d7c37926f19f63020073',
-    messagingSenderId: '794607741322',
-    projectId: 'savingsbox-test',
-    storageBucket: 'savingsbox-test.appspot.com',
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyA4lqgMFhZV6bgVKxbVgutMwHG91Q4kxT0',
+    appId: '1:990566489032:ios:90f41abbc9dac97674befd',
+    messagingSenderId: '990566489032',
+    projectId: 'savingbox-test',
+    storageBucket: 'savingbox-test.appspot.com',
     iosBundleId: 'com.example.savingsboxTest',
   );
 }

@@ -40,16 +40,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  FutureOr<void> signOutEvent(
-      SignOutEvent event, Emitter<AuthState> emit) async {
-    emit(SignOutLoading());
-    final failureOrVoid = await signOut(NoParams());
-    failureOrVoid.fold(
-      (failure) => emit(SignOutError(message: failure.displayMessage)),
-      (_) => emit(const SignOutSuccess(message: 'User signed out')),
-    );
-  }
-
   FutureOr<void> signUpEvent(SignUpEvent event, Emitter<AuthState> emit) async {
     emit(SignUpLoading());
     final failureOrUser = await signUpWithEmailAndPassword(
@@ -57,6 +47,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     failureOrUser.fold(
       (failure) => emit(SignUpError(message: failure.displayMessage)),
       (user) => emit(SignUpSuccess(user: user)),
+    );
+  }
+
+  FutureOr<void> signOutEvent(
+      SignOutEvent event, Emitter<AuthState> emit) async {
+    emit(SignOutLoading());
+    final failureOrVoid = await signOut(NoParams());
+    // logger.d('failureOrVoid: $failureOrVoid');
+    // logger.d('failure: {$failureOrVoid}');
+    // failureOrVoid.fold(
+    //   (failure) => logger.d('failureOrVoid: $failureOrVoid'),
+    //   (_) => logger.d('failure: {$failureOrVoid}'),
+    // );
+
+    failureOrVoid.fold(
+      (failure) => emit(SignOutError(message: failure.displayMessage)),
+      (_) => emit(const SignOutSuccess(message: 'User signed out')),
     );
   }
 

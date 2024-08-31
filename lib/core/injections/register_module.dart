@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
@@ -10,5 +11,5 @@ abstract class RegisterModule {
   InternetConnectionChecker get internetConnectionChecker =>
       InternetConnectionChecker();
   FirebaseAuth get firebaseAuth => FirebaseAuth.instance;
-  // FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
+  FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
 }

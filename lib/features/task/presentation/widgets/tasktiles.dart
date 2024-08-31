@@ -53,7 +53,6 @@ class TaskTile extends StatelessWidget {
                   activeColor: AppColor.primary,
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

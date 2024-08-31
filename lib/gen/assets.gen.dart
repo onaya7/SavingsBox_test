@@ -93,8 +93,13 @@ class $AssetsImagesGen {
   AssetGenImage get appIosIcon =>
       const AssetGenImage('assets/images/app_ios_icon.png');
 
+  /// File path: assets/images/loading-forever.gif
+  AssetGenImage get loadingForever =>
+      const AssetGenImage('assets/images/loading-forever.gif');
+
   /// List of all assets
-  List<AssetGenImage> get values => [appAndroidIcon, appIcon, appIosIcon];
+  List<AssetGenImage> get values =>
+      [appAndroidIcon, appIcon, appIosIcon, loadingForever];
 }
 
 class $AssetsJsonGen {

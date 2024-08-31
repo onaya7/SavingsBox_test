@@ -6,21 +6,13 @@ import '../../../../core/error/failure.dart';
 import '../../../../core/usecase/usecase.dart';
 
 @lazySingleton
-class DeleteTask implements UseCase<void, DeleteTaskParam> {
+class GetTasks implements UseCase<void, NoParams> {
   final TaskRepository repository;
 
-  DeleteTask(this.repository);
+  GetTasks(this.repository);
 
   @override
-  Future<Either<Failure, void>> call(DeleteTaskParam params) async {
-    return await repository.deleteTask(
-      id: params.id,
-    );
+  Future<Either<Failure, void>> call(NoParams params) async {
+    return await repository.getTasks();
   }
-}
-
-class DeleteTaskParam {
-  final String id;
-
-  DeleteTaskParam({required this.id});
 }

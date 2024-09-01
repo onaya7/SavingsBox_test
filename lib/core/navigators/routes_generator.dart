@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:savingsbox_test/features/auth/presentation/view/resendemail_view.dart';
+import 'package:savingsbox_test/features/task/data/models/task_model.dart';
 
 import '../../../features/auth/presentation/view/welcome_view.dart';
 import '../../features/auth/presentation/view/forgotpassword_view.dart';
@@ -56,7 +57,7 @@ class RoutesGenerator {
           child: const TaskListView(),
         );
       case RoutesManager.taskDetailRoute:
-        Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
+        TaskModel args = settings.arguments as TaskModel;
 
         return PageTransition(
           type: PageTransitionType.rightToLeftWithFade,
@@ -66,7 +67,7 @@ class RoutesGenerator {
           ),
         );
       case RoutesManager.taskEditRoute:
-        Map<String, dynamic> args = settings.arguments as Map<String, dynamic>;
+        TaskModel args = settings.arguments as TaskModel;
         return PageTransition(
           type: PageTransitionType.rightToLeftWithFade,
           duration: const Duration(milliseconds: 300),

@@ -18,33 +18,42 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
 
   TaskRemoteDataSourceImpl(this._firebaseAuth, this._firebaseFirestore);
 
+  // @override
+  // Future<TaskModel?> addTask({required TaskModel taskModel}) async {
+  //   final user = _firebaseAuth.currentUser;
+  //   if (user != null) {
+  //     final taskCollection =
+  //         _firebaseFirestore.collection(FirebaseCollection.tasks);
+  //     TaskModel task = taskModel;
+  //     task.id = taskCollection.doc().id;
+  //     task.userId = user.uid;
+  //     task.isCompleted = false;
+  //     task.startDate = DateTime.now();
+  //     task.endDate = DateTime.now().add(const Duration(days: 1));
+  //     final taskDoc = await taskCollection.add(task.toJson());
+  //     final taskData = await taskDoc.get();
+  //     return TaskModel.fromJson(taskData.data()!);
+  //   }
+  //   return null;
+  // }
   @override
   Future<TaskModel?> addTask({required TaskModel taskModel}) async {
     final user = _firebaseAuth.currentUser;
     if (user != null) {
       final taskCollection =
           _firebaseFirestore.collection(FirebaseCollection.tasks);
+      final docRef = taskCollection.doc();
       TaskModel task = taskModel;
-      task.id = taskCollection.doc().id;
+      task.id = docRef.id;
       task.userId = user.uid;
       task.isCompleted = false;
       task.startDate = DateTime.now();
       task.endDate = DateTime.now().add(const Duration(days: 1));
-      final taskDoc = await taskCollection.add(task.toJson());
-      final taskData = await taskDoc.get();
+      await docRef.set(task.toJson());
+      final taskData = await docRef.get();
       return TaskModel.fromJson(taskData.data()!);
     }
     return null;
-  }
-
-  @override
-  Future<void> deleteTask({required String id}) async {
-    final user = _firebaseAuth.currentUser;
-    if (user != null) {
-      final taskCollection =
-          _firebaseFirestore.collection(FirebaseCollection.tasks);
-      await taskCollection.doc(id).delete();
-    }
   }
 
   @override
@@ -71,6 +80,16 @@ class TaskRemoteDataSourceImpl implements TaskRemoteDataSource {
       final taskCollection =
           _firebaseFirestore.collection(FirebaseCollection.tasks);
       await taskCollection.doc(taskModel.id).update(taskModel.toJson());
+    }
+  }
+
+  @override
+  Future<void> deleteTask({required String id}) async {
+    final user = _firebaseAuth.currentUser;
+    if (user != null) {
+      final taskCollection =
+          _firebaseFirestore.collection(FirebaseCollection.tasks);
+      await taskCollection.doc(id).delete();
     }
   }
 }

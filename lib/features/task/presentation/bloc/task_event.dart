@@ -20,15 +20,14 @@ class CreateTaskEvent extends TaskEvent {
 class GetTasksEvent extends TaskEvent {}
 
 class UpdateTaskEvent extends TaskEvent {
-  final String id;
-  final String title;
-  final String description;
+    final TaskModel task;
+
 
   const UpdateTaskEvent(
-      {required this.id, required this.title, required this.description});
+      {required this.task});
 
   @override
-  List<Object> get props => [id, title, description];
+  List<Object> get props => [task];
 }
 
 class DeleteTaskEvent extends TaskEvent {

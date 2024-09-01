@@ -53,7 +53,7 @@ class CompletedTaskList extends StatelessWidget {
                       },
                     ),
                     onDeleteTap: () =>
-                        TaskDeleteConfirmation.show(context, id: 1),
+                        TaskDeleteConfirmation.show(context, id: '1'),
                     onCheckboxChanged: (p0) {
                       // ignore: avoid_print
                       print(p0);

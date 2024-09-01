@@ -69,4 +69,26 @@ class TaskModel extends HiveObject {
   static Timestamp? _toTimestamp(DateTime? date) {
     return date != null ? Timestamp.fromDate(date) : null;
   }
+
+  TaskModel copyWith({
+    String? id,
+    String? userId,
+    String? name,
+    String? description,
+    bool? isCompleted,
+    DateTime? startDate,
+    DateTime? endDate,
+    String? taskCategory,
+  }) {
+    return TaskModel(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      isCompleted: isCompleted ?? this.isCompleted,
+      startDate: startDate ?? this.startDate,
+      endDate: endDate ?? this.endDate,
+      taskCategory: taskCategory ?? this.taskCategory,
+    );
+  }
 }

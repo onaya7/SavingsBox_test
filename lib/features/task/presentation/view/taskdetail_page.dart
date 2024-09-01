@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:savingsbox_test/features/task/data/models/task_model.dart';
 
 import '../../../../core/componenets/custom_divider.dart';
 import '../../../../core/componenets/custom_scaffold.dart';
@@ -6,7 +7,7 @@ import '../../../../core/constants/app_color.dart';
 import '../../../../core/helpers/ui_helpers.dart';
 
 class TaskDetailView extends StatelessWidget {
-  final Map<String, dynamic> args;
+  final TaskModel args;
 
   const TaskDetailView({
     super.key,
@@ -54,7 +55,7 @@ class TaskDetailView extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(
-                      'ID: ${args['id']}',
+                      'ID: ${args.id}',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
@@ -64,7 +65,7 @@ class TaskDetailView extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(
-                      'User ID: ${args['userId']}',
+                      'User ID: ${args.userId}',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
@@ -74,7 +75,7 @@ class TaskDetailView extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(
-                      'Title: ${args['title']}',
+                      'Title: ${args.name}',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
@@ -84,7 +85,7 @@ class TaskDetailView extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(
-                      'Body: ${args['body']}',
+                      'Body: ${args.description}',
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),

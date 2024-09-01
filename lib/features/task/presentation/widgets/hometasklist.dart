@@ -11,6 +11,7 @@ import '../../../../core/componenets/custom_refreshindicator.dart';
 import '../../../../core/helpers/ui_helpers.dart';
 import '../../../../core/navigators/routes_manager.dart';
 import '../../../../core/utils/logger.dart';
+import '../../data/models/task_model.dart';
 import '../widgets/taskdeleteconfirmation.dart';
 import 'taskshimmer.dart';
 import 'tasktiles.dart';
@@ -58,6 +59,9 @@ class _HomeTaskListState extends State<HomeTaskList> {
   }
 
   Widget _buildSuccessState(GetTasksSuccess state) {
+    if (state.tasks.isEmpty) {
+      return _buildDefaultState();
+    }
     return CustomRefreshIndicator(
       onRefresh: () async {
         context.read<TaskBloc>().add(GetTasksEvent());
@@ -73,10 +77,11 @@ class _HomeTaskListState extends State<HomeTaskList> {
                 shrinkWrap: true,
                 separatorBuilder: (context, index) => const Gap(10),
                 itemBuilder: (context, index) {
-                  final tasks = state.tasks;
-                  logger.i('task length: ${tasks.length}');
+                  final List<TaskModel> tasks = state.tasks;
+                  final TaskModel task = tasks[index];
+                  // logger.i('task length: ${tasks.length}');
                   return Dismissible(
-                    key: const Key('key'),
+                    key: Key(task.id.toString()),
                     direction: DismissDirection.startToEnd,
                     background: Container(
                       color: AppColor.primary,
@@ -97,40 +102,26 @@ class _HomeTaskListState extends State<HomeTaskList> {
                       }
                     },
                     child: TaskTile(
-                      title: 'Title',
-                      body: 'Body',
+                      title: task.name ?? '',
+                      body: task.description ?? '',
                       onTaskTileTap: () => UiHelpers.navigateToPage(
                         RoutesManager.taskDetailRoute,
-                        arguments: {
-                          'title':
-                              'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-                          'body':
-                              'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-                          'userId': '3',
-                          'id': '1',
-                        },
+                        arguments: task,
                       ),
                       onEditTap: () => UiHelpers.navigateToPage(
                         RoutesManager.taskEditRoute,
-                        arguments: {
-                          'title':
-                              'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-                          'body':
-                              'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-                          'userId': '3',
-                          'id': '1',
-                        },
+                        arguments: task,
                       ),
-                      onDeleteTap: () =>
-                          TaskDeleteConfirmation.show(context, id: 1),
+                      onDeleteTap: () => TaskDeleteConfirmation.show(context,
+                          id: task.id ?? ''),
                       onCheckboxChanged: (p0) {
                         setState(() {
                           isCompleted = p0 ?? false;
                         });
                       },
                       isCompleted: isCompleted,
-                      startDate: DateTime.now(),
-                      endDate: DateTime.now(),
+                      startDate: task.startDate ?? DateTime.now(),
+                      endDate: task.endDate ?? DateTime.now(),
                     ),
                   );
                 },

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:savingsbox_test/features/task/data/models/task_model.dart';
 import 'package:savingsbox_test/features/task/domain/usecases/delete_task.dart';
 import 'package:savingsbox_test/features/task/presentation/bloc/task_event.dart';
 import 'package:savingsbox_test/features/task/presentation/bloc/task_state.dart';
@@ -55,11 +54,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       UpdateTaskEvent event, Emitter<TaskState> emit) async {
     emit(UpdateTaskLoading());
     final failureOrTasks = await updateTask(UpdateTaskParam(
-        task: TaskModel(
-      id: event.id,
-      name: event.title,
-      description: event.description,
-    )));
+      task: event.task,
+    ));
     failureOrTasks.fold(
       (failure) => emit(UpdateTaskError(message: failure.displayMessage)),
       (_) => emit(const UpdateTaskSuccess()),

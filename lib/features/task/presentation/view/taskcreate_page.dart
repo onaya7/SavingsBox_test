@@ -1,3 +1,4 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -10,6 +11,7 @@ import '../../../../core/componenets/custom_inputfield_label.dart';
 import '../../../../core/componenets/custom_scaffold.dart';
 import '../../../../core/constants/app_color.dart';
 import '../../../../core/helpers/ui_helpers.dart';
+import '../../../../core/utils/logger.dart';
 import '../../../../core/utils/validators.dart';
 import '../bloc/task_bloc.dart';
 import '../bloc/task_event.dart';
@@ -28,6 +30,13 @@ class _TaskCreateViewState extends State<TaskCreateView> {
   final FocusNode _titleFocus = FocusNode();
   final FocusNode _bodyFocus = FocusNode();
   late bool _formCompleted;
+  String? selectedCategory;
+
+  List<String> categories = [
+    'Work',
+    'Personal',
+    'Other',
+  ];
 
   @override
   void initState() {
@@ -64,8 +73,7 @@ class _TaskCreateViewState extends State<TaskCreateView> {
           UiHelpers.showToast('error', state.message);
         } else if (state is CreateTaskSuccess) {
           UiHelpers.showToast('success', 'Task created successfully');
-
-          // UiHelpers.popPage();
+          context.read<TaskBloc>().add(GetTasksEvent());
         }
       },
       builder: (context, state) {
@@ -127,6 +135,39 @@ class _TaskCreateViewState extends State<TaskCreateView> {
                     ),
                   ),
                   const Gap(20),
+                  CustomDropdown(
+                    items: categories,
+                    hintText: 'Select Category',
+                    onChanged: (value) {
+                      setState(() {
+                        selectedCategory = value;
+                        logger.i('selectedCategory: $selectedCategory');
+                      });
+                    },
+                    decoration: CustomDropdownDecoration(
+                      closedFillColor: AppColor.white,
+                      closedBorder: Border.all(
+                        color: AppColor.grey300,
+                        width: 2,
+                      ),
+                      headerStyle: const TextStyle(
+                        color: AppColor.primary,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                      ),
+                      listItemStyle: const TextStyle(
+                        color: AppColor.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                      ),
+                      hintStyle: const TextStyle(
+                        color: AppColor.grey400,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  const Gap(20),
                   CustomButton(
                     text: 'Save',
                     textColor: AppColor.white,
@@ -151,6 +192,7 @@ class _TaskCreateViewState extends State<TaskCreateView> {
       TaskModel task = TaskModel(
         name: _titleController.text,
         description: _bodyController.text,
+        taskCategory: selectedCategory,
       );
       context.read<TaskBloc>().add(
             CreateTaskEvent(

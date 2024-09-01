@@ -59,4 +59,14 @@ class AuthRepositoryImpl implements AuthRepository {
       return const Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, void>> resetPassword(String email) async {
+    try {
+      await remoteDataSource.resetPassword(email);
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      return Left(ServerFailure(message: e.message));
+    }
+  }
 }

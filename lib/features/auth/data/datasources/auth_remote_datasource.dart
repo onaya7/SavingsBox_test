@@ -6,6 +6,7 @@ abstract class AuthRemoteDataSource {
   Future<User?> signUpWithEmailAndPassword(String email, String password);
   Future<void> signOut();
   Future<User?> getCurrentUser();
+  Future<void> resetPassword(String email);
 }
 
 @LazySingleton(as: AuthRemoteDataSource)
@@ -42,5 +43,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<User?> getCurrentUser() async {
     return _firebaseAuth.currentUser;
+  }
+
+  @override
+  Future<void> resetPassword(String email) async {
+    await _firebaseAuth.sendPasswordResetEmail(email: email.trim());
   }
 }

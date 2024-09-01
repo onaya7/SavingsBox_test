@@ -46,12 +46,10 @@ class GetTasksError extends TaskState {
 class UpdateTaskLoading extends TaskState {}
 
 class UpdateTaskSuccess extends TaskState {
-  final List<TaskModel> tasks;
-
-  const UpdateTaskSuccess({required this.tasks});
+  const UpdateTaskSuccess();
 
   @override
-  List<Object> get props => [tasks];
+  List<Object> get props => [];
 }
 
 class UpdateTaskError extends TaskState {
@@ -66,12 +64,10 @@ class UpdateTaskError extends TaskState {
 class DeleteTaskLoading extends TaskState {}
 
 class DeleteTaskSuccess extends TaskState {
-  final List<TaskModel> tasks;
-
-  const DeleteTaskSuccess({required this.tasks});
+  const DeleteTaskSuccess();
 
   @override
-  List<Object> get props => [tasks];
+  List<Object> get props => [];
 }
 
 class DeleteTaskError extends TaskState {

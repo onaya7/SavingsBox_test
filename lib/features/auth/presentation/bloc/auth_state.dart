@@ -104,3 +104,24 @@ class SignOutError extends AuthState {
   @override
   List<Object> get props => [message];
 }
+
+//Reset password states
+class ResetPasswordLoading extends AuthState {}
+
+class ResetPasswordSuccess extends AuthState {
+  final String message;
+
+  const ResetPasswordSuccess({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class ResetPasswordError extends AuthState {
+  final String message;
+
+  const ResetPasswordError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}

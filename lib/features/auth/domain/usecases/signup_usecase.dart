@@ -7,21 +7,21 @@ import '../entities/user_entities.dart';
 import '../repositories/auth_repository.dart';
 
 @lazySingleton
-class SignUpWithEmailAndPassword implements UseCase<UserEntity, Params> {
+class SignUpWithEmailAndPassword implements UseCase<UserEntity, SignUpParams> {
   final AuthRepository repository;
 
   SignUpWithEmailAndPassword(this.repository);
 
   @override
-  Future<Either<Failure, UserEntity>> call(Params params) async {
+  Future<Either<Failure, UserEntity>> call(SignUpParams params) async {
     return await repository.signUpWithEmailAndPassword(
         params.email, params.password);
   }
 }
 
-class Params {
+class SignUpParams {
   final String email;
   final String password;
 
-  Params({required this.email, required this.password});
+  SignUpParams({required this.email, required this.password});
 }

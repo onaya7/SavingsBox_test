@@ -7,12 +7,14 @@ import 'package:savingsbox_test/firebase_options.dart';
 import 'app/app.dart';
 import 'core/constants/env.dart';
 import 'core/injections/injection.dart';
+import 'features/task/data/models/task_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   await Hive.initFlutter();
-  await Hive.openBox(Env.appDb!);
+  Hive.registerAdapter(TaskModelAdapter());
+  await Hive.openBox<TaskModel>(Env.appDb!);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

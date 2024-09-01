@@ -1,41 +1,60 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'task_model.g.dart';
 
+@HiveType(typeId: 0)
 @JsonSerializable()
-class TaskModel {
+class TaskModel extends HiveObject {
+  @HiveField(0)
   @JsonKey(name: "id")
-  final String? id;
+  String? id;
+
+  @HiveField(1)
+  @JsonKey(name: "userId")
+  String? userId;
+
+  @HiveField(2)
   @JsonKey(name: "name")
-  final String? name;
+  String? name;
+
+  @HiveField(3)
   @JsonKey(name: "description")
-  final String? description;
-  @JsonKey(name: "taskStatus")
-  final String? taskStatus;
+  String? description;
+
+  @HiveField(4)
+  @JsonKey(name: "isCompleted")
+  bool? isCompleted;
+
+  @HiveField(5)
   @JsonKey(
     name: "startDate",
     fromJson: _fromTimestamp,
     toJson: _toTimestamp,
   )
-  final DateTime? startDate;
+  DateTime? startDate;
+
+  @HiveField(6)
   @JsonKey(
     name: "endDate",
     fromJson: _fromTimestamp,
     toJson: _toTimestamp,
   )
-  final DateTime? endDate;
-  @JsonKey(name: "userId")
-  final String? userId;
+  DateTime? endDate;
+
+  @HiveField(7)
+  String? taskCategory;
 
   TaskModel({
     this.id,
+    this.userId,
     this.name,
     this.description,
-    this.taskStatus,
+    this.isCompleted,
     this.startDate,
     this.endDate,
-    this.userId,
+    this.taskCategory,
   });
 
   factory TaskModel.fromJson(Map<String, dynamic> json) =>

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:savingsbox_test/core/helpers/ui_helpers.dart';
 import 'package:savingsbox_test/core/utils/validators.dart';
+import 'package:savingsbox_test/features/auth/presentation/bloc/auth_event.dart';
 
 import '../../../../../gen/assets.gen.dart';
 import '../../../../core/componenets/custom_bottom_btn.dart';
@@ -44,10 +45,10 @@ class ForgotPasswordViewState extends State<ForgotPasswordView> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is SignInError) {
+        if (state is ResetPasswordError) {
           UiHelpers.showToast('error', state.message);
-        } else if (state is SignInSuccess) {
-          UiHelpers.navigateToPage(RoutesManager.tasklistRoute);
+        } else if (state is ResetPasswordSuccess) {
+          UiHelpers.navigateToPage(RoutesManager.resendEmailRoute);
         }
       },
       builder: (context, state) {
@@ -127,7 +128,7 @@ class ForgotPasswordViewState extends State<ForgotPasswordView> {
             backgroundColor:
                 _formCompleted ? AppColor.primary : AppColor.neutral300,
             onPressed: _formCompleted ? () => onContinue() : null,
-            isLoading: context.watch<AuthBloc>().state is SignInLoading,
+            isLoading: context.watch<AuthBloc>().state is ResetPasswordLoading,
           ),
         );
       },
@@ -136,13 +137,11 @@ class ForgotPasswordViewState extends State<ForgotPasswordView> {
 
   onContinue() async {
     if (_formKey.currentState!.validate()) {
-      UiHelpers.navigateToPage(RoutesManager.resendEmailRoute);
-      // context.read<AuthBloc>().add(
-      //       SignInEvent(
-      //         email: _emailController.text,
-      //         password: _passwordController.text,
-      //       ),
-      //     );
+      context.read<AuthBloc>().add(
+            ResetPasswordEvent(
+              email: _emailController.text,
+            ),
+          );
     }
   }
 

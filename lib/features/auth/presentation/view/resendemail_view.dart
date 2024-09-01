@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:savingsbox_test/core/navigators/routes_manager.dart';
 
 import '../../../../core/componenets/custom_button.dart';
 import '../../../../core/componenets/custom_scaffold.dart';
 import '../../../../core/constants/app_color.dart';
 import '../../../../core/constants/app_size.dart';
 import '../../../../core/helpers/ui_helpers.dart';
-import '../../../../core/navigators/routes_manager.dart';
 import '../../../../gen/assets.gen.dart';
 
 class ResendEmailView extends StatelessWidget {
@@ -88,19 +88,9 @@ class ResendEmailView extends StatelessWidget {
                         text: 'Done',
                         textColor: AppColor.white,
                         backgroundColor: AppColor.primary,
-                        onPressed: () => UiHelpers.popPage(),
+                        onPressed: () => UiHelpers.navigateToPageAndRemoveUntil(
+                            RoutesManager.welcomeRoute),
                         isLoading: false,
-                        iconColor: AppColor.white,
-                      ),
-                      const SizedBox(
-                        height: 18,
-                      ),
-                      CustomButton(
-                        text: 'Resend Email',
-                        textColor: AppColor.primary,
-                        backgroundColor: AppColor.white,
-                        onPressed: () {},
-                        iconPath: Assets.icons.chevronRight.path,
                         iconColor: AppColor.white,
                       ),
                     ],

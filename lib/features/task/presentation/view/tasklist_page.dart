@@ -12,7 +12,6 @@ import '../../../../core/constants/app_color.dart';
 import '../../../../core/helpers/ui_helpers.dart';
 import '../../../../core/navigators/routes_manager.dart';
 import '../../../../core/utils/logger.dart';
-import '../widgets/completedtasklist.dart';
 import '../widgets/hometasklist.dart';
 
 class TaskListView extends StatefulWidget {
@@ -116,13 +115,13 @@ class TaskListViewState extends State<TaskListView> {
           body: _selectedIndex == 0
               ? const TabBarView(
                   children: [
-                    HomeTaskList(),
-                    HomeTaskList(),
-                    HomeTaskList(),
-                    HomeTaskList(),
+                    HomeTaskList(category: 'All Tasks', isCompleted: false),
+                    HomeTaskList(category: 'Work',),
+                    HomeTaskList(category: 'Personal'),
+                    HomeTaskList(category: 'Others'),
                   ],
                 )
-              : const CompletedTaskList(),
+              : const HomeTaskList(category: 'All Tasks', isCompleted: true),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: AppColor.white,

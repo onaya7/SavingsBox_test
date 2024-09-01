@@ -156,7 +156,6 @@ class _TaskEditViewState extends State<TaskEditView> {
             name: _titleController.text,
             description: _bodyController.text,
           )));
-
     }
   }
 }

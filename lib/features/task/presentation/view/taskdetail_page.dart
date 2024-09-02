@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:savingsbox_test/core/helpers/date_helpers.dart';
 import 'package:savingsbox_test/features/task/data/models/task_model.dart';
 
 import '../../../../core/componenets/custom_divider.dart';
@@ -93,7 +94,7 @@ class TaskDetailView extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(
-                      'Start Date: ${args.startDate}',
+                      'Start Date: ${DateHelpers.formatDateTimeWithTime(args.startDate ?? DateTime.now())}',
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
@@ -103,7 +104,7 @@ class TaskDetailView extends StatelessWidget {
                   ),
                   ListTile(
                     title: Text(
-                      'End Date: ${args.endDate}',
+                      'End Date: ${DateHelpers.formatDateTimeWithTime(args.endDate ?? DateTime.now())}',
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),

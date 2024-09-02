@@ -25,4 +25,12 @@ class DateHelpers {
         return 'th';
     }
   }
+
+  static String formatDateTimeWithTime(DateTime dateTime) {
+    final daySuffix = _getDaySuffix(dateTime.day);
+    final formattedDate = DateFormat('EEEE d').format(dateTime);
+    final year = DateFormat('yyyy').format(dateTime);
+    final formattedTime = DateFormat('hh:mma').format(dateTime).toLowerCase();
+    return '$formattedDate$daySuffix $year at $formattedTime';
+  }
 }

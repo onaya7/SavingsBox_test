@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<TaskBloc>(create: (context) => sl<TaskBloc>()),
       ],
       child: DevicePreview(
-        enabled: !kReleaseMode,
+        enabled: kReleaseMode,
         builder: (context) {
           return ToastificationWrapper(
             child: MaterialApp(

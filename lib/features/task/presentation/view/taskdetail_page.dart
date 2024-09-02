@@ -16,6 +16,14 @@ class TaskDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Map<bool, Color> statusColor = {
+      false: AppColor.orange500,
+      true: AppColor.green600,
+    };
+    Map<bool, IconData> statusIcon = {
+      false: Icons.sentiment_very_dissatisfied,
+      true: Icons.sentiment_very_satisfied,
+    };
     return CustomScaffold(
       appBar: AppBar(
         title: const Text(
@@ -30,7 +38,7 @@ class TaskDetailView extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => UiHelpers.popPage(),
         ),
-        backgroundColor: AppColor.primary,
+        backgroundColor: statusColor[args.isCompleted],
         foregroundColor: AppColor.white,
       ),
       body: SingleChildScrollView(
@@ -46,27 +54,17 @@ class TaskDetailView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.newspaper_rounded,
-                          size: 80, color: AppColor.primary),
+                      Icon(statusIcon[args.isCompleted],
+                          size: 80, color: statusColor[args.isCompleted]),
                     ],
                   ),
                   ListTile(
                     title: Text(
-                      'ID: ${args.id}',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ),
-                  const CustomDivider(
-                    height: 0,
-                    thickness: 2,
-                  ),
-                  ListTile(
-                    title: Text(
-                      'User ID: ${args.userId}',
-                      style: Theme.of(context).textTheme.titleMedium,
+                      'Task ID: ${args.id}',
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
                   const CustomDivider(
@@ -76,7 +74,7 @@ class TaskDetailView extends StatelessWidget {
                   ListTile(
                     title: Text(
                       'Title: ${args.name}',
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
                   const CustomDivider(
@@ -86,7 +84,41 @@ class TaskDetailView extends StatelessWidget {
                   ListTile(
                     title: Text(
                       'Body: ${args.description}',
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                  const CustomDivider(
+                    height: 0,
+                    thickness: 2,
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Start Date: ${args.startDate}',
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                  const CustomDivider(
+                    height: 0,
+                    thickness: 2,
+                  ),
+                  ListTile(
+                    title: Text(
+                      'End Date: ${args.endDate}',
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ),
+                  const CustomDivider(
+                    height: 0,
+                    thickness: 2,
+                  ),
+                  ListTile(
+                    title: Text(
+                      'Status: ${args.isCompleted == true ? 'Completed' : 'Pending'}',
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                    trailing: CircleAvatar(
+                      radius: 10,
+                      backgroundColor: statusColor[args.isCompleted],
                     ),
                   ),
                 ],

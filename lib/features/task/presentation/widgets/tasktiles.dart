@@ -35,7 +35,7 @@ class TaskTile extends StatelessWidget {
       borderRadius: 8,
       onTap: onTaskTileTap,
       child: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.transparent,

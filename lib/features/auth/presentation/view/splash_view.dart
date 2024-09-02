@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:savingsbox_test/core/constants/env.dart';
+import 'package:savingsbox_test/gen/assets.gen.dart';
 
 import '../../../../core/componenets/custom_scaffold.dart';
 import '../../../../core/constants/app_color.dart';
@@ -27,10 +27,10 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      statusBarColor: AppColor.black,
+      statusBarColor: AppColor.white,
       statusBarIconBrightness: Brightness.light,
-      systemNavigationBarColor: AppColor.black,
-      backgroundColor: AppColor.black,
+      systemNavigationBarColor: AppColor.white,
+      backgroundColor: AppColor.white,
       body: Container(
         padding: const EdgeInsets.only(bottom: 30),
         child: Column(
@@ -42,6 +42,11 @@ class _SplashViewState extends State<SplashView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    Assets.images.icon.image(
+                      width: 100,
+                      height: 100,
+                      // fit: BoxFit.cover,
+                    ),
                     Text(
                       Env.appName ?? 'Todo App',
                       style: const TextStyle(
@@ -50,19 +55,18 @@ class _SplashViewState extends State<SplashView> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const Gap(38),
-                    const SizedBox(
-                      height: 25,
-                      width: 25,
-                      child: CircularProgressIndicator.adaptive(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          AppColor.white,
-                        ),
-                        strokeWidth: 2.5,
-                      ),
-                    ),
                   ],
                 ),
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+              width: 25,
+              child: CircularProgressIndicator.adaptive(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  AppColor.black,
+                ),
+                strokeWidth: 2.5,
               ),
             ),
           ],

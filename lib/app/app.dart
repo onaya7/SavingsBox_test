@@ -1,6 +1,7 @@
 // lib/main.dart
 
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:savingsbox_test/core/constants/keys.dart';
@@ -23,18 +24,23 @@ class MyApp extends StatelessWidget {
         BlocProvider<AuthBloc>(create: (context) => sl<AuthBloc>()),
         BlocProvider<TaskBloc>(create: (context) => sl<TaskBloc>()),
       ],
-      child: ToastificationWrapper(
-        child: MaterialApp(
-          locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
-          debugShowCheckedModeBanner: false,
-          themeMode: ThemeMode.light,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          onGenerateRoute: RoutesGenerator.onGenerateRoute,
-          initialRoute: RoutesManager.splashRoute,
-          navigatorKey: Keys.navigatorKey,
-        ),
+      child: DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) {
+          return ToastificationWrapper(
+            child: MaterialApp(
+              locale: DevicePreview.locale(context),
+              builder: DevicePreview.appBuilder,
+              debugShowCheckedModeBanner: false,
+              themeMode: ThemeMode.light,
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              onGenerateRoute: RoutesGenerator.onGenerateRoute,
+              initialRoute: RoutesManager.splashRoute,
+              navigatorKey: Keys.navigatorKey,
+            ),
+          );
+        },
       ),
     );
   }

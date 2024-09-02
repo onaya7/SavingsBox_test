@@ -81,10 +81,6 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/app_android_icon.png
-  AssetGenImage get appAndroidIcon =>
-      const AssetGenImage('assets/images/app_android_icon.png');
-
   /// File path: assets/images/app_icon.png
   AssetGenImage get appIcon =>
       const AssetGenImage('assets/images/app_icon.png');
@@ -93,13 +89,15 @@ class $AssetsImagesGen {
   AssetGenImage get appIosIcon =>
       const AssetGenImage('assets/images/app_ios_icon.png');
 
+  /// File path: assets/images/icon.png
+  AssetGenImage get icon => const AssetGenImage('assets/images/icon.png');
+
   /// File path: assets/images/loading-forever.gif
   AssetGenImage get loadingForever =>
       const AssetGenImage('assets/images/loading-forever.gif');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [appAndroidIcon, appIcon, appIosIcon, loadingForever];
+  List<AssetGenImage> get values => [appIcon, appIosIcon, icon, loadingForever];
 }
 
 class $AssetsJsonGen {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../core/componenets/custom_button.dart';
 import '../../../../core/componenets/custom_scaffold.dart';
@@ -36,6 +37,21 @@ class WelcomeView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
+                          Assets.images.icon
+                              .image(
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.cover,
+                              )
+                              .animate()
+                              .scale(
+                                delay: 100.ms,
+                                duration: 500.ms,
+                              )
+                              .then(
+                                delay: 500.ms,
+                              )
+                              .shimmer(),
                           const Text(
                             'Welcome to',
                             style: TextStyle(
@@ -46,12 +62,6 @@ class WelcomeView extends StatelessWidget {
                           ),
                           const SizedBox(
                             height: 5,
-                          ),
-                          Assets.json.bookreveal.lottie(
-                            width: 150,
-                            height: 150,
-                            fit: BoxFit.cover,
-                            repeat: false,
                           ),
                           Text(
                             Env.appName ?? 'Todo App',
@@ -80,7 +90,7 @@ class WelcomeView extends StatelessWidget {
                   width: AppSizes.screenWidth(context),
                   padding: const EdgeInsets.only(left: 35, right: 34),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       const Text(
                         'Let\'s Get Started...',

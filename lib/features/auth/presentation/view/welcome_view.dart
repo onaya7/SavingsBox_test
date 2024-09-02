@@ -4,6 +4,7 @@ import '../../../../core/componenets/custom_button.dart';
 import '../../../../core/componenets/custom_scaffold.dart';
 import '../../../../core/constants/app_color.dart';
 import '../../../../core/constants/app_size.dart';
+import '../../../../core/constants/env.dart';
 import '../../../../core/helpers/ui_helpers.dart';
 import '../../../../core/navigators/routes_manager.dart';
 import '../../../../gen/assets.gen.dart';
@@ -52,9 +53,9 @@ class WelcomeView extends StatelessWidget {
                             fit: BoxFit.cover,
                             repeat: false,
                           ),
-                          const Text(
-                            'TraTask',
-                            style: TextStyle(
+                          Text(
+                            Env.appName ?? 'Todo App',
+                            style: const TextStyle(
                               color: AppColor.primary,
                               fontSize: 45,
                               fontWeight: FontWeight.w700,

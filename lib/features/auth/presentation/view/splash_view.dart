@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:savingsbox_test/core/constants/env.dart';
 
 import '../../../../core/componenets/custom_scaffold.dart';
 import '../../../../core/constants/app_color.dart';
@@ -38,19 +39,19 @@ class _SplashViewState extends State<SplashView> {
               child: Container(
                 width: AppSizes.screenWidth(context),
                 color: Colors.transparent,
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'TraTask',
-                      style: TextStyle(
+                      Env.appName ?? 'Todo App',
+                      style: const TextStyle(
                         color: AppColor.primary,
                         fontSize: 45,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Gap(38),
-                    SizedBox(
+                    const Gap(38),
+                    const SizedBox(
                       height: 25,
                       width: 25,
                       child: CircularProgressIndicator.adaptive(

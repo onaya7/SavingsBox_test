@@ -5,4 +5,5 @@ class Env {
   static String? androidApiKey = dotenv.env['ANDROID_APIKEY'];
   static String? iosApiKey = dotenv.env['IOS_APIKEY'];
   static String? appDb = dotenv.env['APP_DB'];
+  static String? appName = dotenv.env['APP_NAME'];
 }

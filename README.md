@@ -56,7 +56,7 @@ Generate the APK or App Bundle:
 ```bash
 flutter build apk --release
 ```
-or
+or 
 ```bash
 flutter build appbundle --release
 ```
@@ -83,4 +83,7 @@ Contributions are welcome! Please submit pull requests or raise issues for any b
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Video Demonstration
-A video walkthrough of the app is available [here](link-to-video).
+A video walkthrough of the app is available [here](https://youtu.be/K_GuL7G79a8 ).
+
+## App Apk
+The APK file for the app can be downloaded from [here](https://drive.google.com/file/d/174M3B9fsN3zhbSCTaQog36qXrdN8PfqC/view?usp=sharing).

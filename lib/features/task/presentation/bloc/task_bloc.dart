@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:savingsbox_test/core/utils/logger.dart';
 import 'package:savingsbox_test/features/task/domain/usecases/delete_task.dart';
 import 'package:savingsbox_test/features/task/presentation/bloc/task_event.dart';
 import 'package:savingsbox_test/features/task/presentation/bloc/task_state.dart';
@@ -35,7 +36,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     emit(CreateTaskLoading());
     final failureOrTasks = await createTask(AddTaskParam(task: event.task));
     failureOrTasks.fold(
-      (failure) => emit(CreateTaskError(message: failure.displayMessage)),
+      (failure) {
+        logger.i('Error creating task: ${failure.displayMessage}');
+        emit(CreateTaskError(message: failure.displayMessage));
+      },
       (_) => emit(CreateTaskSuccess()),
     );
   }

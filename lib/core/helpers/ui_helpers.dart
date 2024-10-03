@@ -67,6 +67,7 @@ class UiHelpers {
   //Unfocus helper ------------------------------------------------------------------------------------------------------------
   static void unfocus(BuildContext context) {
     FocusScope.of(context).unfocus();
+    
   }
 
   //CloseKeyboard helper ------------------------------------------------------------------------------------------------------
